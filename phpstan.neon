@@ -1,0 +1,17 @@
+includes:
+    - ../../phpstan/phpstan-strict-rules/rules.neon
+    - ../../nunomaduro/larastan/extension.neon
+
+parameters:
+    level: 8
+    paths:
+        - ../../../app
+    excludePaths:
+        - '.phpstorm.meta.php'
+        - '_ide_helper.php'
+        - 'server.php'
+    checkMissingIterableValueType: false
+
+rules:
+    - JumpTwentyFour\PhpCodingStandards\Laravel\PHPStan\RequestValidationRule
+
