@@ -1,9 +1,15 @@
 <?php
 
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
+use Symplify\EasyCodingStandard\ValueObject\Option;
 
 return static function (ContainerConfigurator $containerConfigurator): void {
-    $containerConfigurator->parameters();
+    $parameters = $containerConfigurator->parameters();
 
-    $containerConfigurator->import(__DIR__ . '/vendor/jumptwentyfour/php-coding-standards/ecs.php');
+    $parameters->set(Option::PATHS, [
+        __DIR__ . '/ecs.php',
+        __DIR__ . '/src',
+    ]);
+
+    $containerConfigurator->import(getcwd() . '/vendor/jumptwentyfour/php-coding-standards/ecs.php');
 };
