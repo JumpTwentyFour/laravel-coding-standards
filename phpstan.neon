@@ -13,5 +13,5 @@ parameters:
     checkMissingIterableValueType: false
 
 rules:
-    - JumpTwentyFour\PhpCodingStandards\Laravel\PHPStan\RequestValidationRule
+    - JumpTwentyFour\LaravelCodingStandards\Laravel\PHPStan\RequestValidationRule
 
