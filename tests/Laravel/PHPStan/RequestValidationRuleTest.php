@@ -2,7 +2,7 @@
 
 namespace Tests\Laravel\PHPStan;
 
-use JumpTwentyFour\PhpCodingStandards\Laravel\PHPStan\RequestValidationRule;
+use JumpTwentyFour\LaravelCodingStandards\Laravel\PHPStan\RequestValidationRule;
 use PHPStan\Rules\Rule;
 use PHPStan\Testing\RuleTestCase;
 
