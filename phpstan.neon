@@ -1,5 +1,4 @@
 includes:
-    - ../../phpstan/phpstan-strict-rules/rules.neon
     - ../../nunomaduro/larastan/extension.neon
 
 parameters:
