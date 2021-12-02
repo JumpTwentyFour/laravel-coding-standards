@@ -13,13 +13,18 @@ use PHPStan\Type\ObjectType;
 
 class RequestValidationRule implements Rule
 {
+    /**
+     * @return string
+     */
     public function getNodeType(): string
     {
         return MethodCall::class;
     }
 
     /**
-     * @return string[]
+     * @param Node $node
+     * @param Scope $scope
+     * @return array<int, string>|string[]
      */
     public function processNode(Node $node, Scope $scope): array
     {
@@ -43,6 +48,11 @@ class RequestValidationRule implements Rule
 
     /**
      * Determine whether the Expr was called on a class instance.
+     *
+     * @param Expr $expr
+     * @param Scope $scope
+     * @param string $className
+     * @return bool
      */
     protected function isCalledOn(Expr $expr, Scope $scope, string $className): bool
     {

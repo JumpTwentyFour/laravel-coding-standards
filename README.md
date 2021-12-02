@@ -1,32 +1,39 @@
-# laravel-coding-standards
-Jump Twenty Four Laravel Coding Standards
+# Laravel Coding Standards
+
+At [Jump24](https://jump24.co.uk/) we pride ourselves on keeping our coding standards under tight control, this is why we built this package.
+
+## Installation
+
+To install this package, simply use compose:
+
+```bash
+composer require composer require jumptwentyfour/laravel-coding-standards
+```
+
 
 ## Setup
 
-Add the following to your `composer.json` file.
-```
-"repositories": [
-        {
-            "type": "vcs",
-            "url": "https://github.com/JumpTwentyFour/laravel-coding-standards"
-        }
-    ],
+Once installed you will have access to our PHPStan configuration file, which you can easily add to your `phpstan.neon`:
+
+```neon
+includes:
+    - ./vendor/jumptwentyfour/laravel-coding-standards/phpstan.neon
 ```
 
-Then run the following commands:-
+## Running
 
-`composer require jumptwentyfour/laravel-coding-standards --dev`
+To run the code standard checks, simply run the following command:
 
-You will also need to add the following to your local phpstan.neon file includes:
-
-`- ./vendor/jumptwentyfour/laravel-coding-standards/phpstan.neon`
-
-## Running PHP Easy Coding Standard
-`vendor/bin/ecs check`
-
-## Extending the Base ecs.php file
-Create a new `ecs.php` file like the following example:-
+```bash
+./vendor/bin/ecs check
 ```
+This will run the configured code standard checks for you, giving you feedback on where your code is and what improvements you need to implement
+
+## Extending
+
+These code standards are extendible, all you need to do is create your own `ecs.php` in the root directory of your project:
+
+```php
 <?php
 
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
