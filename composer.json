@@ -2,24 +2,18 @@
     "name": "jumptwentyfour/laravel-coding-standards",
     "description": "Coding standards for our PHP applications.",
     "license": "MIT",
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "https://github.com/JumpTwentyFour/php-coding-standards"
-        }
-    ],
     "authors": [
         {
+            "role": "Lead Developer",
             "name": "Alex Williams",
             "email": "alex@jump24.co.uk",
-            "homepage": "https://jump24.co.uk",
-            "role": "Lead Developer"
+            "homepage": "https://jump24.co.uk/"
         },
         {
+            "role": "Developer",
             "name": "Daniel Newns",
             "email": "dan@jump24.co.uk",
-            "homepage": "https://jump24.co.uk",
-            "role": "Developer"
+            "homepage": "https://jump24.co.uk/"
         }
     ],
     "autoload": {

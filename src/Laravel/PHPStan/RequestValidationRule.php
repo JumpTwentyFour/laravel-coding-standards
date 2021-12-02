@@ -19,7 +19,7 @@ class RequestValidationRule implements Rule
     }
 
     /**
-     * @return string[]
+     * @return array<int, string>|string[]
      */
     public function processNode(Node $node, Scope $scope): array
     {
