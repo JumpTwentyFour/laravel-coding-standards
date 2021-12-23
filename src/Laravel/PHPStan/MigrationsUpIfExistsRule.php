@@ -5,7 +5,11 @@ namespace JumpTwentyFour\LaravelCodingStandards\Laravel\PHPStan;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Support\Facades\Schema;
 use PhpParser\Node;
+use PhpParser\Node\Expr\BinaryOp\Identical;
 use PhpParser\Node\Expr\StaticCall;
+use PhpParser\Node\Identifier;
+use PhpParser\Node\Stmt\Node\Stmt\ClassMethod;
+use PhpParser\Node\Stmt\Node\Stmt\If_;
 use PHPStan\Analyser\Scope;
 use PHPStan\Rules\Rule;
 use PHPStan\Type\ObjectType;
@@ -23,7 +27,7 @@ class MigrationsUpIfExistsRule implements Rule
      */
     public function processNode(Node $node, Scope $scope): array
     {
-        if (!$node->name instanceof Node\Identifier || $node->name->toString() !== 'create') {
+        if (!$node->name instanceof Identifier || $node->name->toString() !== 'create') {
             return [];
         }
 
@@ -34,10 +38,9 @@ class MigrationsUpIfExistsRule implements Rule
 
         $previousNode = $node->getAttribute('parent');
 
-        while (!$previousNode instanceof Node\Stmt\ClassMethod) {
+        while (!$previousNode instanceof ClassMethod) {
             while ($previousNode->hasAttribute('previous')) {
                 $previousNode = $previousNode->getAttribute('previous');
-
                 if ($this->checkForHasTableMethod($previousNode)) {
                     return [];
                 }
@@ -60,19 +63,27 @@ class MigrationsUpIfExistsRule implements Rule
 
     private function checkForHasTableMethod($node): bool
     {
-        if (!$node instanceof Node\Stmt\If_) {
+        if (!$node instanceof If_ && !$node instanceof Identical) {
             return false;
         }
 
-        if ($node->cond->class === null) {
+        if ($node instanceof If_) {
+            $class = $node->cond->class;
+        }
+
+        if ($node instanceof Identical) {
+            $class = $node->left->class;
+        }
+
+        if ($class === null) {
             return false;
         }
 
-        if ($node->cond->class->toString() !== Schema::class) {
+        if ($class->toString() !== Schema::class) {
             return false;
         }
 
-        if ($node->cond->class->getAttribute('parent')->name->toString() !== 'hasTable') {
+        if ($class->getAttribute('parent')->name->toString() !== 'hasTable') {
             return false;
         }
 
