@@ -13,4 +13,5 @@ parameters:
 
 rules:
     - JumpTwentyFour\LaravelCodingStandards\Laravel\PHPStan\RequestValidationRule
+    - JumpTwentyFour\LaravelCodingStandards\Laravel\PHPStan\MigrationsUpIfExistsRule
 
