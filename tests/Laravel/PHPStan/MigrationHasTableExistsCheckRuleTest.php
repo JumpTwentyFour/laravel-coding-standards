@@ -2,15 +2,15 @@
 
 namespace Tests\Laravel\PHPStan;
 
-use JumpTwentyFour\LaravelCodingStandards\Laravel\PHPStan\MigrationsUpIfExistsRule;
+use JumpTwentyFour\LaravelCodingStandards\Laravel\PHPStan\MigrationHasTableExistsCheckRule;
 use PHPStan\Rules\Rule;
 use PHPStan\Testing\RuleTestCase;
 
-class MigrationUpIfExistsRuleTest extends RuleTestCase
+class MigrationHasTableExistsCheckRuleTest extends RuleTestCase
 {
     protected function getRule(): Rule
     {
-        return new MigrationsUpIfExistsRule();
+        return new MigrationHasTableExistsCheckRule();
     }
 
     public function testHasTableCheckMissingInTableCreation(): void

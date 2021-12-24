@@ -2,20 +2,18 @@
 
 namespace JumpTwentyFour\LaravelCodingStandards\Laravel\PHPStan;
 
-use Illuminate\Database\Migrations\Migration;
 use Illuminate\Support\Facades\Schema;
 use PhpParser\Node;
 use PhpParser\Node\Expr\BinaryOp\Identical;
+use PhpParser\Node\Expr\BooleanNot;
 use PhpParser\Node\Expr\StaticCall;
 use PhpParser\Node\Identifier;
-use PhpParser\Node\Stmt\Node\Stmt\ClassMethod;
-use PhpParser\Node\Stmt\Node\Stmt\If_;
+use PhpParser\Node\Stmt\If_;
+use PhpParser\Node\Stmt\ClassMethod;
 use PHPStan\Analyser\Scope;
 use PHPStan\Rules\Rule;
-use PHPStan\Type\ObjectType;
-use PHPStan\Type\Type;
 
-class MigrationsUpIfExistsRule implements Rule
+class MigrationHasTableExistsCheckRule implements Rule
 {
     public function getNodeType(): string
     {
@@ -38,7 +36,7 @@ class MigrationsUpIfExistsRule implements Rule
 
         $previousNode = $node->getAttribute('parent');
 
-        while (!$previousNode instanceof ClassMethod) {
+        while (!$previousNode instanceof ClassMethod && $previousNode !== null) {
             while ($previousNode->hasAttribute('previous')) {
                 $previousNode = $previousNode->getAttribute('previous');
                 if ($this->checkForHasTableMethod($previousNode)) {
@@ -63,8 +61,12 @@ class MigrationsUpIfExistsRule implements Rule
 
     private function checkForHasTableMethod($node): bool
     {
-        if (!$node instanceof If_ && !$node instanceof Identical) {
+        if (!$node instanceof If_ && !$node instanceof Identical && !$node instanceof BooleanNot) {
             return false;
+        }
+
+        if ($node instanceof BooleanNot) {
+            $class = $node->expr->class;
         }
 
         if ($node instanceof If_) {
