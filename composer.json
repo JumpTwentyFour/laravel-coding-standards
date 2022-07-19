@@ -29,7 +29,7 @@
     },
     "require": {
         "php": "^8.0",
-        "jumptwentyfour/php-coding-standards": "v2.0",
+        "jumptwentyfour/php-coding-standards": "^v2.0",
         "nikic/php-parser": "^v4.14",
         "nunomaduro/larastan": "^2.0"
     },
