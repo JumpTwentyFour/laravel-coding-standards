@@ -29,7 +29,7 @@
     },
     "require": {
         "php": "^8.0",
-        "jumptwentyfour/php-coding-standards": "dev-feature/MB-27-upgrade-docserver",
+        "jumptwentyfour/php-coding-standards": "v2.0.0",
         "nikic/php-parser": "^4.0",
         "nunomaduro/larastan": "^1.1"
     },
