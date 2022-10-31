@@ -36,17 +36,34 @@ These code standards are extendible, all you need to do is create your own `ecs.
 ```php
 <?php
 
-use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
-use Symplify\EasyCodingStandard\ValueObject\Option;
+declare(strict_types=1);
 
-return static function (ContainerConfigurator $containerConfigurator): void {
-    $containerConfigurator->import(__DIR__ . '/vendor/jumptwentyfour/laravel-coding-standards/ecs.php');
+use PHP_CodeSniffer\Standards\Generic\Sniffs\NamingConventions\CamelCapsFunctionNameSniff;
+use SlevomatCodingStandard\Sniffs\Functions\UnusedParameterSniff;
+use Symplify\EasyCodingStandard\Config\ECSConfig;
 
-    $parameters = $containerConfigurator->parameters();
-    
-    $parameters->set(Option::PATHS, [
+return static function (ECSConfig $ecsConfig): void {
+    $ecsConfig->import(__DIR__ . '/vendor/jumptwentyfour/laravel-coding-standards/ecs.php');
+
+    $ecsConfig->paths([
         __DIR__ . '/app',
+        __DIR__ . '/config',
+        __DIR__ . '/database',
+        __DIR__ . '/routes',
         __DIR__ . '/tests',
+    ]);
+
+    $ecsConfig->skip([
+        UnusedParameterSniff::class => [
+            __DIR__ . '/app/Console/Kernel.php',
+            __DIR__ . '/app/Exceptions/Handler.php',
+        ],
+        'Unused parameter $attributes.' => [
+            __DIR__ . '/database/*.php',
+        ],
+        CamelCapsFunctionNameSniff::class => [
+            '/tests/**',
+        ],
     ]);
 };
 ```
