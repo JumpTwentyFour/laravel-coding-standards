@@ -4,7 +4,7 @@
     "license": "MIT",
     "authors": [
         {
-            "role": "Lead Developer",
+            "role": "Technical Lead",
             "name": "Alex Williams",
             "email": "alex@jump24.co.uk",
             "homepage": "https://jump24.co.uk/"
@@ -36,5 +36,10 @@
     },
     "require-dev": {
         "phpunit/phpunit": "^9.3"
+    },
+    "config": {
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true
+        }
     }
 }
