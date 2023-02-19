@@ -20,7 +20,7 @@ class RequestValidationRuleTest extends RuleTestCase
             [
                 'Test Request::validate() fails' => [
                     'All request validation should be done in the form of a form request ' .
-                    'https://laravel.com/docs/8.x/validation#form-request-validation and not performed inline in a ' .
+                    'https://laravel.com/docs/10.x/validation#form-request-validation and not performed inline in a ' .
                     'controller to ensure a separation of concerns.',
                     11,
                 ],
