@@ -13,7 +13,7 @@ jobs:
       - uses: php-actions/composer@v6
 
       - name: PHPUnit Tests
-        uses: php-actions/phpunit@v3
+        uses: php-actions/phpunit@v9
         with:
           configuration: phpunit.xml.dist
           args: --coverage-text
