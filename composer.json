@@ -4,7 +4,7 @@
     "license": "MIT",
     "authors": [
         {
-            "role": "Lead Developer",
+            "role": "Technical Lead",
             "name": "Alex Williams",
             "email": "alex@jump24.co.uk",
             "homepage": "https://jump24.co.uk/"
@@ -29,12 +29,17 @@
     },
     "require": {
         "php": "^7.2|^8.0",
-        "nunomaduro/larastan": "^2.0.0",
+        "nunomaduro/larastan": "^2.1.0",
         "nikic/php-parser": "^4.0",
         "laravel/framework": "^7.0|^8.0|^9.0|^10.0",
         "jumptwentyfour/php-coding-standards": "^1.0"
     },
     "require-dev": {
         "phpunit/phpunit": "^9.3"
+    },
+    "config": {
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true
+        }
     }
 }
