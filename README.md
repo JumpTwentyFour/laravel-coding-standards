@@ -43,7 +43,7 @@ use Symplify\EasyCodingStandard\Config\ECSConfig;
 use Symplify\EasyCodingStandard\ValueObject\Option;
 
 return static function (ECSConfig $ecsConfig): void {
-    $ecsConfig->import(__DIR__ . '/vendor/jumptwentyfour/php-coding-standards/ecs.php');
+    $ecsConfig->import(__DIR__ . '/vendor/jumptwentyfour/laravel-coding-standards/ecs.php');
 
     $ecsConfig->paths([
         __DIR__ . '/app',
