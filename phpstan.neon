@@ -1,5 +1,5 @@
 includes:
-    - ../../nunomaduro/larastan/extension.neon
+    - ../../larastan/larastan/extension.neon
 
 parameters:
     level: 8
