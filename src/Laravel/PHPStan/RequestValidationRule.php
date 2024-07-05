@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace JumpTwentyFour\LaravelCodingStandards\Laravel\PHPStan;
 
 use Illuminate\Http\Request;

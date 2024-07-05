@@ -31,39 +31,19 @@ This will run the configured code standard checks for you, giving you feedback o
 
 ## Extending
 
-These code standards are extendable, all you need to do is create your own `ecs.php` in the root directory of your project:
+These code standards are extendable, all you need to do is create your own `ecs.php` in the root directory of your project and copy the following and extend as required:
 
 ```php
 <?php
 
 declare(strict_types=1);
 
-use JumpTwentyFour\PhpCodingStandards\Support\ConfigHelper;
-use Symplify\EasyCodingStandard\Config\ECSConfig;
-use Symplify\EasyCodingStandard\ValueObject\Option;
-
-return static function (ECSConfig $ecsConfig): void {
-    $ecsConfig->import(__DIR__ . '/vendor/jumptwentyfour/laravel-coding-standards/ecs.php');
-
-    $ecsConfig->paths([
-        __DIR__ . '/app',
-        __DIR__ . '/config',
-        __DIR__ . '/database',
-        __DIR__ . '/routes',
-        __DIR__ . '/tests',
-    ]);
-    
-    $ecsConfig->skip(array_merge(ConfigHelper::make()->getParameter(Option::SKIP), [
-        UnusedParameterSniff::class => [
-            __DIR__ . '/app/Console/Kernel.php',
-            __DIR__ . '/app/Exceptions/Handler.php',
-        ],
-        'Unused parameter $attributes.' => [
-            __DIR__ . '/database/*.php',
-        ],
-        CamelCapsFunctionNameSniff::class => [
-            '/tests/**',
-        ],
-    ]));
-};
+return ECSConfig::configure()
+    ->withSets([getcwd() . '/vendor/jumptwentyfour/php-coding-standards/ecs.php'])
+    ->withPaths(
+        [
+            __DIR__ . '/ecs.php',
+            __DIR__ . '/src',
+        ]
+    );
 ```
