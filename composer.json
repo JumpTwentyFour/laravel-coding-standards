@@ -28,7 +28,7 @@
         }
     },
     "require": {
-        "php": "^7.2|^8.0",
+        "php": "^8.2",
         "larastan/larastan": "^3.0",
         "nikic/php-parser": "^5.0",
         "jumptwentyfour/php-coding-standards": "^v3.0.0",
