@@ -11,6 +11,8 @@ use PhpParser\Node\Expr;
 use PhpParser\Node\Expr\MethodCall;
 use PHPStan\Analyser\Scope;
 use PHPStan\Rules\Rule;
+use PHPStan\Rules\RuleError;
+use PHPStan\Rules\RuleErrorBuilder;
 use PHPStan\Type\ObjectType;
 
 class RequestValidationRule implements Rule
@@ -21,7 +23,7 @@ class RequestValidationRule implements Rule
     }
 
     /**
-     * @return array<int, string>|string[]
+     * @return RuleError[]
      */
     public function processNode(Node $node, Scope $scope): array
     {
@@ -39,8 +41,13 @@ class RequestValidationRule implements Rule
         $message = 'All request validation should be done in the form of a form request ' .
             'https://laravel.com/docs/10.x/validation#form-request-validation and not performed inline in a ' .
             'controller to ensure a separation of concerns.';
-
-        return [$message];
+        
+        return [
+            RuleErrorBuilder::message($message)
+                ->file($scope->getFile())
+                ->line($node->getStartLine())
+                ->build(),
+        ];
     }
 
     /**
