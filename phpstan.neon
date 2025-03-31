@@ -6,10 +6,11 @@ parameters:
     paths:
         - ../../../app
     excludePaths:
-        - '.phpstorm.meta.php'
-        - '_ide_helper.php'
-        - 'server.php'
-    checkMissingIterableValueType: false
+        - '../../../.phpstorm.meta.php (?)'
+        - '../../../_ide_helper.php (?)'
+        - '../../../server.php (?)'
+    ignoreErrors:
+        - identifier: missingType.iterableValue
     checkUninitializedProperties: true
 
 rules:
